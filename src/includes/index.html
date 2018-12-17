@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+@@include("templates/head.html")
+<body>
+	<div id="wrapper">
+		@@include("templates/header.html", {"activepage": "supportpage"})
+		<main id="main">
+			<picture>
+				<source srcset="images/img01.png, images/img01-2x.png 2x" media="(max-width: 767px)">
+				<source srcset="images/img02.png, images/img02-2x.png 2x" media="(max-width: 1024px)">
+				<source srcset="images/img03.png, images/img03-2x.png 2x">
+				<img src="images/img03.png" alt="">
+			</picture>
+			@@include("templates/submit-form.html")
+		</main>
+		@@include("templates/footer.html")
+	</div>
+</body>
+</html>

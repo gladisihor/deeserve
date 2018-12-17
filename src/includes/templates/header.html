@@ -1,0 +1,19 @@
+<header id="header">
+			<div class="container-fluid">
+				<strong class="logo"><a href="#">Deeserve</a></strong>
+				<div class="call-box">
+					<span>Call us</span>
+					<a href="tel:01509808586">01509 80 85 86</a>
+				</div>
+				<nav class="navigation">
+					<ul>
+						<li@@if (activepage === 'supportpage') { class="active"}><a href="#">IT Support</a></li>
+						<li@@if (activepage === 'securitypage') { class="active"}><a href="#">Security</a></li>
+						<li@@if (activepage === 'hardwarepage') { class="active"}><a href="#">Hardware</a></li>
+						<li@@if (activepage === 'cloudpage') { class="active"}><a href="#">Cloud</a></li>
+						<li@@if (activepage === 'aboutuspage') { class="active"}><a href="#">About us</a></li>
+						<li@@if (activepage === 'contactpage') { class="active"}><a href="#">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
