@@ -3,7 +3,8 @@ $breakpoints: (
 	'phone': 480px,
 	'tablet': 768px,
 	'desktop': 992px,
-	'widescreen': 1200px
+	'widescreen': 1200px,
+	'widescreen-large': 1440px
 );
 
 // keywords
@@ -33,6 +34,7 @@ $media-expressions: (
 @import 'base/helpers';
 
 body{
+	min-width:320px;
 	font:#{$base-font-size}/#{$base-line-height}  $font-family-base;
 }
 a, button, input[type="submit"]{
@@ -51,6 +53,14 @@ h1{
 	font-weight:500;
 	color:#43484d;
 	letter-spacing:-0.04em;
+	@include media("<desktop") {
+		font-size:39px;
+		line-height:46px;
+	}
+	@include media("<tablet") {
+		font-size:32px;
+		line-height:40px;
+	}
 }
 .container-fluid{
 	@extend %clearfix;
@@ -63,6 +73,9 @@ h1{
 	position:relative;
 	overflow:hidden;
 	padding:100px 0 0;
+	@include media("<widescreen") {
+		padding:0;
+	}
 }
 #header{
 	position:fixed;
@@ -72,15 +85,42 @@ h1{
 	width:100%;
 	color:#fff;
 	background:$primary;
+	@include media("<widescreen") {
+		position:static;
+	}
+	&:before{
+		display:none;
+		position:absolute;
+		z-index:4;
+		content:"";
+		left:0;
+		top:0;
+		width:100%;
+		height:60px;
+		background:$primary;
+		pointer-events:none;
+		@include media("<widescreen") {
+			display:block;
+		}
+	}
 	.container-fluid{
+		display:flex;
+		justify-content:space-between;
 		padding:0;
 	}
 	.call-box{
-		float:right;
+		flex-shrink:0;
+		min-width:330px;
 		padding:38px 20px 34px 10px;
 		font-size:20px;
 		line-height:28px;
 		color:$info-text-color;
+		@include media("<widescreen") {
+			min-width:0;
+			padding:20px 10px;
+			font-size:16px;
+			line-height:22px;
+		}
 		span{
 			padding:0 0 0 48px;
 			&:before{
@@ -92,13 +132,23 @@ h1{
 					background-image:url(../images/icon-phone-2x.png);
 					background-size:cover;
 				}
+				@include media("<widescreen") {
+					top:-5px;
+				}
 			}
 		}
 	}
 }
 .logo{
+	flex-shrink:0;
 	float:left;
 	padding:34px 13px 0 40px;
+	@include media("<widescreen-large") {
+		padding-left:25px;
+	}
+	@include media("<widescreen") {
+		padding:16px 20px;
+	}
 	a{
 		display:block;
 		width:134px;
@@ -111,20 +161,124 @@ h1{
 			background-image:url(../images/../images/logo-2x.png);
 			background-size:100% 100%;
 		}
+		@include media("<widescreen") {
+			position:relative;
+			z-index:4;
+		}
+	}
+}
+.nav-holder{
+	flex-grow:1;
+	@include media("<widescreen") {
+		position:absolute;
+		z-index:3;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		background:rgba(255, 255, 255, 0);
+		cursor:pointer;
+		pointer-events:none;
+		transition:background-color 0.3s ease;
+	}
+	.nav-slider{
+		display:flex;
+		@include media("<widescreen") {
+			flex-direction:column;
+			position:absolute;
+			right:0;
+			top:0;
+			bottom:0;
+			width:320px;
+			max-width:80%;
+			overflow:auto;
+			padding:60px 0 0;
+			background:$primary;
+			cursor:default;
+			transition:transform 0.3s ease-out;
+			transform:translateX(100%);
+		}
+	}
+	.nav-active &{
+		@include media("<widescreen") {
+			background:rgba(255, 255, 255, 0.3);
+			pointer-events:auto;
+		}
+		.nav-slider{
+			@include media("<widescreen") {
+				transition-timing-function:ease-out;
+				transform:translateX(0);
+			}
+		}
+	}
+}
+.nav-opener{
+	display:none;
+	position:absolute;
+	right:0;
+	top:0;
+	width:65px;
+	height:60px;
+	@include media("<widescreen") {
+		display:block;
+		z-index:4;
+	}
+	&:before,
+	&:after,
+	span{
+		position:absolute;
+		content:'';
+		top:50%;
+		left:15px;
+		right:10px;
+		height:4px;
+		margin-top:-2px;
+		border-radius:2px;
+		background:$warning;
+		transform-origin:2px 2px;
+		transition:transform 0.3s ease, opacity 0.3s ease;
+	}
+	&:before{transform: translate(0, -13px);}
+	span{right:17px;}
+	&:after{
+		right:13px;
+		transform: translate(0, 13px);
+	}
+	.nav-active &{
+		&:before,
+		&:after{
+			right:8px;
+			top:50%;
+		}
+		&:before{transform:translate(0, -13px) rotate(45deg);}
+		&:after{transform:translate(0, 13px) rotate(-45deg);}
+		span{opacity:0;}
 	}
 }
 .navigation{
-	overflow:hidden;
+	@extend %clearfix;
+	flex-grow:1;
 	padding:39px 0 0;
 	font-size:20px;
 	line-height:27px;
 	font-weight:500;
+	@include media("<widescreen") {
+		flex-grow:0;
+		padding:0;
+	}
 	ul{
 		@extend %listreset;
 	}
 	li{
 		float:left;
 		padding:0 26px;
+		@include media("<widescreen-large") {
+			padding:0 2.3%;
+		}
+		@include media("<widescreen") {
+			float:none;
+			padding:0;
+		}
 	}
 	a{
 		display:block;
@@ -132,6 +286,9 @@ h1{
 		padding:0 0 34px;
 		color:#fff;
 		text-decoration:none;
+		@include media("<widescreen") {
+			padding:15px 20px 15px 35px;
+		}
 		&:after{
 			position:absolute;
 			content:"";
@@ -142,19 +299,30 @@ h1{
 			background:$warning;
 			transform:scale(1, 0);
 			transform-origin:0 100%;
-			transition:transform 0.2s ease;
+			transition:transform 0.2s ease, opacity 0.2s ease;
+			@include media("<widescreen") {
+				width:5px;
+				height:100%;
+				transform:scale(1, 1);
+				opacity:0;
+			}
 		}
 	}
 	.active a,
 	a:hover{
+		@include media("<widescreen") {
+			background:rgba(255, 255, 255, 0.15);
+		}
 		&:after{
 			background:$warning;
 			transform:scale(1, 1);
+			@include media("<widescreen") {
+				opacity:1;
+			}
 		}
 	}
 }
 .call-box{
-	min-width:330px;
 	padding:55px 20px 44px 10px;
 	font-size:30px;
 	line-height:40px;
@@ -163,11 +331,19 @@ h1{
 	text-align:center;
 	background:$warning;
 	letter-spacing:-0.025em;
+	@include media("<tablet") {
+		padding:24px 10px;
+		font-size:20px;
+		line-height:30px;
+	}
 	span{
 		display:inline-block;
 		vertical-align:top;
 		position:relative;
 		padding:0 4px 0 74px;
+		@include media("<tablet") {
+			padding:0 4px 0 64px;
+		}
 		&:before{
 			position:absolute;
 			content:"";
@@ -176,9 +352,14 @@ h1{
 			width:50px;
 			height:50px;
 			background:url(../images/icon-phone-light.png) no-repeat;
+			background-size:cover;
 			@include media("retina2x") {
 				background-image:url(../images/icon-phone-light-2x.png);
 				background-size:cover;
+			}
+			@include media("<tablet") {
+				width:40px;
+				height:40px;
 			}
 		}
 	}
@@ -192,17 +373,113 @@ h1{
 	z-index:2;
 }
 .submit-form{
-	padding:102px 0 119px;
+	padding:102px 0 124px;
+	@include media("<desktop") {
+		padding:80px 0;
+	}
+	@include media("<tablet") {
+		padding:50px 0;
+	}
 	.title-notes{
 		display:block;
 		padding:0 0 60px;
-		font-size:22px;
+		font-size:16px;
 		line-height:32px;
 		font-weight:normal;
 		color:#5e6977;
+		@include media("<tablet") {
+			padding:0 0 40px;
+			font-size:15px;
+			line-height:26px;
+		}
+	}
+	.form-group{
+		margin:0 0 20px;
 	}
 	.btn-warning{
+		padding:18px 20px;
+		font-size:16px;
+		line-height:22px;
 		color:#fff;
+		@include media("<tablet") {
+			padding:13px 20px;
+		}
+	}
+	.alt-box{
+		padding:39px 0 0;
+		@include media("<tablet") {
+			padding:20px 0 0;
+		}
+		span{
+			display:block;
+			padding:0 0 16px;
+			font-size:16px;
+			line-height:25px;
+			font-weight:500;
+			color:#86939e;
+			@include media("<tablet") {
+				padding:0 0 10px;
+			}
+		}
+		a{
+			display:inline-block;
+			vertical-align:top;
+			position:relative;
+			padding:0 0 5px;
+			font-size:22px;
+			line-height:32px;
+			color:#5e6977;
+			text-decoration:none;
+			@include media("<tablet") {
+				font-size:20px;
+				line-height:28px;
+			}
+			&:before,
+			&:after{
+				position:absolute;
+				content:"";
+				left:0;
+				bottom:0;
+				width:100%;
+				height:1px;
+				background:#e1e8ee;
+			}
+			&:after{
+				background:$warning;
+				transform:scale(0, 1);
+				transition:transform 0.2s ease;
+			}
+			&:hover{
+				&:after{
+					transform:scale(1, 1);
+				}
+			}
+		}
+	}
+}
+.form-control{
+	height:60px;
+	padding:17px 18px;
+	font-size:16px;
+	line-height:22px;
+	color:#86939e;
+	border:2px solid $base-input-color;
+	border-radius:6px;
+	@include media("<tablet") {
+		height:50px;
+		padding:12px 18px;
+	}
+	&:hover{
+		border-color:darken($base-input-color, 10%);
+	}
+}
+textarea.form-control{
+	height:60px;
+	min-height:60px;
+	max-height:400px;
+	@include media("<tablet") {
+		height:50px;
+		min-height:50px;
 	}
 }
 #footer{
@@ -211,6 +488,12 @@ h1{
 }
 .partners-section{
 	padding:57px 0 86px;
+	@include media("<desktop") {
+		padding:60px 0;
+	}
+	@include media("<tablet") {
+		padding:40px 0;
+	}
 	background:#f5f8fa;
 	.sup-title{
 		display:block;
@@ -219,9 +502,16 @@ h1{
 		line-height:22px;
 		font-weight:500;
 		color:#86939e;
+		@include media("<tablet") {
+			padding:0 0 20px;
+			font-size:16px;
+		}
 	}
 	h1{
 		margin:0 0 40px;
+		@include media("<tablet") {
+			margin:0 0 30px;
+		}
 	}
 }
 .partners-list{
@@ -237,12 +527,21 @@ h1{
 	padding:60px 0 46px;
 	color:#fff;
 	background:#373c49;
+	@include media("<desktop") {
+		padding:40px 0 30px;
+	}
+	@include media("<tablet") {
+		padding:30px 0 25px;
+	}
 	.title{
 		display:block;
 		padding:0 0 21px;
 		font-size:17px;
 		line-height:30px;
 		font-weight:500;
+		@include media("<tablet") {
+			padding:0 0 12px;
+		}
 	}
 }
 .social-networks{
@@ -250,10 +549,16 @@ h1{
 	margin:0 -20px;
 	font-size:26px;
 	line-height:1;
+	@include media("<tablet") {
+		margin:0 -10px;
+	}
 	li{
 		display:inline-block;
 		vertical-align:top;
 		padding:10px 20px;
+		@include media("<tablet") {
+			padding:10px;
+		}
 	}
 	a{
 		color:#d0e5ff;
@@ -269,11 +574,27 @@ h1{
 	padding:37px 150px;
 	color:#fff;
 	background:$primary;
+	@include media("<widescreen") {
+		padding:28px 0 28px 115px;
+	}
+	@include media("<tablet") {
+		padding:28px 10px 18px;
+	}
 	.logo{
 		position:absolute;
 		left:39px;
 		top:55px;
 		padding:0;
+		@include media("<widescreen") {
+			left:20px;
+			top:40px;
+		}
+		@include media("<tablet") {
+			position:static;
+			display:inline-block;
+			vertical-align:top;
+			float:none;
+		}
 		a{
 			width:95px;
 			height:17px;
@@ -284,6 +605,12 @@ h1{
 	font-size:15px;
 	line-height:22px;
 	font-weight:500;
+	@include media("<widescreen") {
+		text-align:right;
+	}
+	@include media("<tablet") {
+		text-align:center;
+	}
 	ul{
 		@extend %listreset;
 	}
@@ -291,6 +618,12 @@ h1{
 		display:inline-block;
 		vertical-align:top;
 		padding:15px 34px;
+		@include media("<widescreen") {
+			padding:15px 24px;
+		}
+		@include media("<widescreen") {
+			padding:10px 18px;
+		}
 	}
 	a{
 		color:#fff;
@@ -298,5 +631,12 @@ h1{
 		&:hover{
 			color:$warning;
 		}
+	}
+}
+.resize-active{
+	a, a:before, a:after,
+	.nav-holder,
+	.nav-holder .nav-slider{
+		transition:none !important;
 	}
 }

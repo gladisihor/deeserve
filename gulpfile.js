@@ -204,7 +204,7 @@ gulp.task('minify:css', function () {
 });
 
 /* babel */
-gulp.task('babel', function() {
+gulp.task('babel', ['copy:js'], function() {
     return gulp.src(path.js + mainJQuery)
         .pipe(babel({
             presets: [
@@ -219,26 +219,13 @@ gulp.task('babel', function() {
         .pipe(gulp.dest(path.jsDist));
 });
 
-/* minify js */
-gulp.task('uglify:js', ['babel'], function() {
-    return gulp.src(path.watch.jsDist)
-        .pipe(uglify())
-        .pipe(gulp.dest(path.jsDist));
-});
-
 /* prettify js */
-gulp.task('jsprettify', ['babel'], function() {
+gulp.task('prettify:js', ['babel'], function() {
     return gulp.src(path.watch.jsDist)
         .pipe(jsprettify())
         .pipe(gulp.dest(path.jsDist));
 });
 
-gulp.task('prettify:js', ['jsprettify'], function() {
-    return gulp.src([path.watch.jsDist, '!' + path.mainJsDist], {
-        read: false,
-        force: true
-    }).pipe(clean());
-});
 gulp.task('prettify:srcjs', function() {
     gulp.src(path.js + mainJQuery)
         .pipe(jsprettify())
@@ -246,11 +233,10 @@ gulp.task('prettify:srcjs', function() {
 });
 
 /* minify js */
-gulp.task('minify:js', ['uglify:js'], function() {
-    return gulp.src([path.watch.jsDist, '!' + path.mainJsDist], {
-        read: false,
-        force: true
-    }).pipe(clean());
+gulp.task('minify:js', ['babel'], function() {
+    return gulp.src(path.watch.jsDist)
+        .pipe(uglify())
+        .pipe(gulp.dest(path.jsDist));
 });
 
 /* clean folders */
@@ -308,6 +294,13 @@ gulp.task('copy:fonts', function () {
     return gulp
         .src(path.watch.fonts)
         .pipe(gulpCopy(path.svgFontDist, {
+            prefix: 2
+        }));
+});
+gulp.task('copy:js', function () {
+    return gulp
+        .src(path.watch.js)
+        .pipe(gulpCopy(path.jsDist, {
             prefix: 2
         }));
 });

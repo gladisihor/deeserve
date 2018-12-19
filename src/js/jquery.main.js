@@ -1,6 +1,35 @@
 jQuery(function() {
-    
+    initMobileNav();
+    initResizeClass();
 });
+
+function initResizeClass() {
+    var win = jQuery(window);
+    var body = jQuery('body');
+    var resizeClass = 'resize-active';
+    var timer = null;
+    win.on('resize orientation', function() {
+        body.addClass(resizeClass);
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            body.removeClass(resizeClass);
+        }, 300);
+    });
+}
+
+function initMobileNav() {
+    var activeClass = 'nav-active';
+    var body = jQuery('body');
+    jQuery('.nav-opener').on('click', function(e) {
+        e.preventDefault();
+        body.toggleClass(activeClass);
+    });
+    jQuery('.nav-holder').on('click', function(e) {
+        if (e.currentTarget === e.target) {
+            body.removeClass(activeClass);
+        }
+    });
+}
 
 /*! Picturefill - v3.0.1 - 2015-09-30
  * http://scottjehl.github.io/picturefill
