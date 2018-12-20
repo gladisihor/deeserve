@@ -103,6 +103,9 @@ h2{
 	&.container-small{
 		max-width:710px;
 	}
+	&.no-paddings{
+		padding:0;
+	}
 }
 #wrapper{
 	position:relative;

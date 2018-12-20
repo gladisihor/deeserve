@@ -7953,6 +7953,8 @@ h2 {
     max-width: 770px; }
   .container-fluid.container-small {
     max-width: 710px; }
+  .container-fluid.no-paddings {
+    padding: 0; }
 
 #wrapper {
   position: relative;
