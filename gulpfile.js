@@ -19,7 +19,6 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'), // additional to livereload
     clean = require('gulp-clean'), // removes files and folders
     gulpCopy = require('gulp-copy'), // copy files from one folder to another
-    babel = require('gulp-babel'), // es6 to es5
     notify = require("gulp-notify");
 
 // functional variables 
@@ -91,7 +90,7 @@ var connectDistApi = {
     livereload: true
 };
 var prettifyApi = {
-    indent: '	'
+    indent: '   '
 };
 var fileincludeApi = {
     prefix: '@@',
@@ -203,25 +202,9 @@ gulp.task('minify:css', function () {
         .pipe(gulp.dest(path.cssDist));
 });
 
-/* babel */
-gulp.task('babel', ['copy:js'], function() {
-    return gulp.src(path.js + mainJQuery)
-        .pipe(babel({
-            presets: [
-                ['env', {
-                    'targets': {'browsers': ['last 2 versions']}
-                }]
-            ],
-            plugins: [
-                'transform-object-rest-spread', // resolve spread operators
-            ]
-        }))
-        .pipe(gulp.dest(path.jsDist));
-});
-
 /* prettify js */
-gulp.task('prettify:js', ['babel'], function() {
-    return gulp.src(path.watch.jsDist)
+gulp.task('prettify:js', function() {
+    return gulp.src(path.jsDist + mainJQuery)
         .pipe(jsprettify())
         .pipe(gulp.dest(path.jsDist));
 });
@@ -233,8 +216,8 @@ gulp.task('prettify:srcjs', function() {
 });
 
 /* minify js */
-gulp.task('minify:js', ['babel'], function() {
-    return gulp.src(path.watch.jsDist)
+gulp.task('minify:js', function() {
+    return gulp.src(path.jsDist + mainJQuery)
         .pipe(uglify())
         .pipe(gulp.dest(path.jsDist));
 });
