@@ -196,14 +196,14 @@ gulp.task('prettify:srccss', function () {
 
 /* minify css */
 gulp.task('minify:css', function () {
-    return gulp.src(path.css + mainCss)
+    return gulp.src(path.watch.css)
         .pipe(gcmq())
         .pipe(cleanCSS())
         .pipe(gulp.dest(path.cssDist));
 });
 
 /* prettify js */
-gulp.task('prettify:js', function() {
+gulp.task('prettify:js', ['copy:js'], function() {
     return gulp.src(path.jsDist + mainJQuery)
         .pipe(jsprettify())
         .pipe(gulp.dest(path.jsDist));
@@ -216,7 +216,7 @@ gulp.task('prettify:srcjs', function() {
 });
 
 /* minify js */
-gulp.task('minify:js', function() {
+gulp.task('minify:js', ['copy:js'], function() {
     return gulp.src(path.jsDist + mainJQuery)
         .pipe(uglify())
         .pipe(gulp.dest(path.jsDist));

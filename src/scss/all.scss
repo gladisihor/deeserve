@@ -1,21 +1,21 @@
-$breakpoints: (
-	'xs-phone': 320px,
-	'phone': 480px,
-	'tablet': 768px,
-	'desktop': 992px,
-	'widescreen': 1200px,
-	'widescreen-large': 1440px
+$breakpoints:(
+	'xs-phone':320px,
+	'phone':480px,
+	'tablet':768px,
+	'desktop':992px,
+	'widescreen':1200px,
+	'widescreen-large':1440px
 );
 
 // keywords
-$media-expressions: (
-	'screen': 'screen',
-	'print': 'print',
-	'handheld': 'handheld',
-	'landscape': '(orientation: landscape)',
-	'portrait': '(orientation: portrait)',
-	'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
-	'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+$media-expressions:(
+	'screen':'screen',
+	'print':'print',
+	'handheld':'handheld',
+	'landscape':'(orientation:landscape)',
+	'portrait':'(orientation:portrait)',
+	'retina2x':'(-webkit-min-device-pixel-ratio:1.5), (min-resolution:144dpi)',
+	'retina3x':'(-webkit-min-device-pixel-ratio:2.5), (min-resolution:240dpi)'
 );
 
 // ligatured operators ≥ ≤
@@ -25,6 +25,7 @@ $media-expressions: (
 
 @import 'vendors/include-media';
 @import 'vendors/normalize';
+@import 'vendors/swiper';
 
 @import 'base/variables';
 @import 'base/fonts';
@@ -39,8 +40,8 @@ body{
 }
 a, button, input[type="submit"]{
 	cursor:pointer;
-	transition: color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-	-webkit-transition: color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, visibility 0.2s ease, -webkit-transform 0.2s ease;
+	transition:color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+	-webkit-transition:color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, visibility 0.2s ease, -webkit-transform 0.2s ease;
 }
 img{
 	vertical-align:top;
@@ -68,6 +69,32 @@ h2{
 	line-height:54px;
 	font-weight:300;
 }
+.btn{
+	&.btn-more {
+		position:relative;
+		padding:11px 55px 11px 17px;
+		font-size:14px;
+		line-height:21px;
+		font-weight:600;
+		border-width:2px;
+		border-radius:24px;
+
+		&:after{
+			@include add-icon('\e003');
+			position:absolute;
+			right:13px;
+			top:50%;
+			font-size:15px;
+			line-height:1;
+			transform:translateY(-50%);
+		}
+	}
+	&.btn-outline-warning{
+		&:hover {
+			color:#fff;
+		}
+	}
+}
 .sup-title{
 	display:block;
 	padding:0 0 30px;
@@ -93,7 +120,7 @@ h2{
 		line-height:26px;
 	}
 }
-.container-fluid{
+#wrapper .container{
 	@extend %clearfix;
 	max-width:1440px;
 	margin:0 auto;
@@ -141,7 +168,7 @@ h2{
 			display:block;
 		}
 	}
-	.container-fluid{
+	.container{
 		display:flex;
 		justify-content:space-between;
 		padding:0;
@@ -276,11 +303,11 @@ h2{
 		transform-origin:2px 2px;
 		transition:transform 0.3s ease, opacity 0.3s ease;
 	}
-	&:before{transform: translate(0, -13px);}
+	&:before{transform:translate(0, -13px);}
 	span{right:17px;}
 	&:after{
 		right:13px;
-		transform: translate(0, 13px);
+		transform:translate(0, 13px);
 	}
 	.nav-active &{
 		&:before,
@@ -409,6 +436,7 @@ h2{
 #main{
 	position:relative;
 	z-index:2;
+	padding:0;
 }
 .bg-capture{
 	position:absolute;
@@ -439,21 +467,53 @@ h2{
 	line-height:34px;
 	color:#fff;
 	text-align:center;
+	@include media("<widescreen") {
+		min-height:calc(100vh - 60px);
+	}
+	@include media("<tablet") {
+		display:block;
+		min-height:0;
+		font-size:17px;
+		line-height:27px;
+	}
 	*{
 		color:inherit;
+	}
+	.bg-frame{
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		@include media("<tablet") {
+			position:relative;
+			left:auto;
+			top:auto;
+			height:260px;
+		}
 	}
 	>.holder{
 		position:relative;
 		z-index:1;
 		width:100%;
 		padding:78px 0 110px;
+		@include media("<tablet") {
+			padding:20px 0 69px;
+			background:$info-text-color;
+		}
 	}
 	h1{
 		margin:0 0 35px;
 		font-size:96px;
 		line-height:110px;
 		font-weight:bold;
-		letter-spacing: -0.063em;
+		letter-spacing:-0.063em;
+		@include media("<tablet") {
+			margin:0 0 14px;
+			font-size:36px;
+			line-height:44px;
+			letter-spacing:0;
+		}
 	}
 	.anchor-link{
 		position:absolute;
@@ -464,6 +524,9 @@ h2{
 		font-size:33px;
 		outline:0;
 		transform:translateX(-50%);
+		@include media("<tablet") {
+			bottom:22px;
+		}
 		&:hover{
 			color:$warning;
 			text-decoration:none;
@@ -483,9 +546,19 @@ h2{
 }
 .article-block{
 	position:relative;
+	@include media("<desktop") {
+		font-size:17px;
+		line-height:28px;
+	}
+	@include media("<tablet") {
+		text-align:center;
+	}
 	&:nth-child(even){
 		.row{
 			flex-direction:row-reverse;
+			@include media("<tablet") {
+				flex-direction:column-reverse;
+			}
 		}
 	}
 	&.alt{
@@ -493,8 +566,24 @@ h2{
 		.text-box{
 			width:520px;
 		}
+		h1{
+			margin:0 0 45px;
+			font-weight:500;
+			@include media("<desktop") {
+				margin:0 0 24px;
+			}
+		}
 		.img-box{
 			min-height:814px;
+			@include media("<widescreen") {
+				min-height:650px;
+			}
+			@include media("<desktop") {
+				min-height:500px;
+			}
+			@include media("<tablet") {
+				min-height:380px;
+			}
 		}
 	}
 	.anchor{
@@ -508,7 +597,12 @@ h2{
 			top:0;
 		}
 	}
-	.container-fluid{padding:0;}
+	.container{padding:0;}
+	.row{
+		@include media("<tablet") {
+			flex-direction:column-reverse;
+		}
+	}
 	.text-holder{
 		display:flex;
 		justify-content:center;
@@ -517,11 +611,73 @@ h2{
 	.text-box{
 		width:434px;
 		max-width:100%;
-		padding:20px 15px;
+		padding:30px 15px;
+		@include media("<tablet") {
+			padding:30px 25px;
+		}
+	}
+	.top-icon{
+		display:inline-block;
+		vertical-align:top;
+		margin:0 0 21px;
+	}
+	h1{
+		margin:0 0 20px;
+		font-weight:normal;
+	}
+	p{
+		margin:0 0 53px;
+		@include media("<desktop") {
+			margin:0 0 30px;
+		}
+	}
+	.more{
+		display:inline-block;
+		vertical-align:top;
+		position:relative;
+		padding:0 25px 2px 0;
+		font-size:16px;
+		line-height:22px;
+		font-weight:600;
+		&:after{
+			@include add-icon('\e003');
+			position:absolute;
+			right:0;
+			top:50%;
+			font-size:11px;
+			line-height:1;
+			transform:translateY(-50%);
+		}
+	}
+	.socials{
+		padding:81px 0 0;
+		@include media("<desktop") {
+			padding:30px 0 0;
+		}
 	}
 	.img-box{
 		position:relative;
 		min-height:700px;
+		@include media("<widescreen") {
+			min-height:540px;
+		}
+		@include media("<desktop") {
+			min-height:400px;
+		}
+		@include media("<tablet") {
+			min-height:300px;
+		}
+	}
+}
+.socials{
+	padding:0 0 20px;
+	.title{
+		display:block;
+		font-size:16px;
+		line-height:25px;
+		font-weight:500;
+		color:$warning;
+		opacity:0.8;
 	}
 }
 .items-frame{
@@ -587,6 +743,51 @@ h2{
 		margin:0;
 	}
 }
+.clients-section{
+	padding:160px 0 60px;
+	text-align:center;
+	.container{
+		max-width:1204px;
+		padding:0 15px;
+	}
+	h3{
+		margin:0 0 67px;
+		font-size:18px;
+		line-height:25px;
+		font-weight:500;
+		color:$warning;
+	}
+	.swiper-container {
+		width:100%;
+		height:100%;
+	}
+	.thumbnails-pagination{
+		display:flex;
+		justify-content:space-between;
+		align-items:center;
+		.thumbnail{
+			cursor:pointer;
+			opacity:0.3;
+			transition:opacity 0.3s ease;
+			&.active{
+				opacity:1;
+			}
+		}
+	}
+	.swiper-wrapper {
+		font-size:0;
+		line-height:0;
+		white-space:nowrap;
+	}
+	.swiper-slide {
+		display:inline-block;
+		vertical-align:top;
+		font-size:32px;
+		line-height:46px;
+		text-align:center;
+		white-space:normal;
+	}
+}
 .live-straming-section{
 	display:flex;
 	align-items:center;
@@ -611,6 +812,9 @@ h2{
 		z-index:1;
 		width:100%;
 		padding:82px 0 20px;
+		@include media("<tablet") {
+			padding:50px 0 22px;
+		}
 	}
 	.sup-title{
 		padding-bottom:19px;
@@ -619,6 +823,10 @@ h2{
 		font-size:22px;
 		line-height:32px;
 		opacity:0.8;
+		@include media("<tablet") {
+			font-size:18px;
+			line-height:27px;
+		}
 	}
 }
 .submit-form{
@@ -722,6 +930,15 @@ textarea.form-control{
 	position:relative;
 	z-index:1;
 	.social-networks{
+		margin:0 -20px;
+		font-size:26px;
+		line-height:1;
+		li{
+			padding:10px 20px;
+			@include media("<tablet") {
+				padding:10px;
+			}
+		}
 		a{
 			color:#d0e5ff;
 			opacity:0.17;
@@ -779,16 +996,16 @@ textarea.form-control{
 }
 .social-networks{
 	@extend %listreset;
-	margin:0 -20px;
-	font-size:26px;
+	margin:0 -10px;
+	font-size:19px;
 	line-height:1;
 	@include media("<tablet") {
-		margin:0 -10px;
+		margin:0 -7px;
 	}
 	li{
 		display:inline-block;
 		vertical-align:top;
-		padding:10px 20px;
+		padding:10px 7px;
 		@include media("<tablet") {
 			padding:10px;
 		}
