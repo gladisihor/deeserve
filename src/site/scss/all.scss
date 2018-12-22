@@ -472,7 +472,7 @@ h2{
 }
 .welcome-banner{
 	position:relative;
-	min-height:calc(100vh - 100px);
+	min-height:800px;
 	font-size:22px;
 	line-height:34px;
 	color:#fff;
@@ -480,7 +480,7 @@ h2{
 	letter-spacing:-0.009em;
 	white-space:nowrap;
 	@include media("<widescreen") {
-		min-height:calc(100vh - 60px);
+		min-height:700px;
 	}
 	@include media("<tablet") {
 		display:block;
@@ -493,10 +493,10 @@ h2{
 		vertical-align:middle;
 		content:"";
 		width:1px;
-		min-height:calc(100vh - 100px);
+		min-height:800px;
 		margin:0 0 0 -1px;
 		@include media("<widescreen") {
-			min-height:calc(100vh - 60px);
+			min-height:700px;
 		}
 		@include media("<tablet") {
 			display:none;

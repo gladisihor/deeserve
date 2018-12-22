@@ -9911,7 +9911,7 @@ h2 {
 
 .welcome-banner {
   position: relative;
-  min-height: calc(100vh - 100px);
+  min-height: 800px;
   font-size: 22px;
   line-height: 34px;
   color: #fff;
@@ -9920,7 +9920,7 @@ h2 {
   white-space: nowrap; }
   @media (max-width: 1199px) {
     .welcome-banner {
-      min-height: calc(100vh - 60px); } }
+      min-height: 700px; } }
   @media (max-width: 767px) {
     .welcome-banner {
       display: block;
@@ -9932,11 +9932,11 @@ h2 {
     vertical-align: middle;
     content: "";
     width: 1px;
-    min-height: calc(100vh - 100px);
+    min-height: 800px;
     margin: 0 0 0 -1px; }
     @media (max-width: 1199px) {
       .welcome-banner:before {
-        min-height: calc(100vh - 60px); } }
+        min-height: 700px; } }
     @media (max-width: 767px) {
       .welcome-banner:before {
         display: none; } }
