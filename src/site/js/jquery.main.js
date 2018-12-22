@@ -16,8 +16,8 @@ function initLoader() {
 
 function initWow() {
     if (!window.WOW) return;
-    wow = new WOW({
-        offset: 100,
+    var wow = new WOW({
+        offset: 50,
         animateClass: 'animated'
     });
     wow.init();
