@@ -35,42 +35,40 @@ var path = {
     root: './',
     distFolder: './dist/',
     distFolderCont: './dist/*',
-    cssDist: './dist/css/',
-    jsDist: './dist/js/',
-    mainJsDist: './dist/js/bundle.js',
-    mainJsPath: 'js/bundle.js',
-    imagesDist: './dist/images/',
-    svgFontDist: './dist/fonts/',
+    cssDist: './dist/site/css/',
+    jsDist: './dist/site/js/',
+    mainJsDist: './dist/site/js/bundle.js',
+    imagesDist: './dist/site/images/',
+    svgFontDist: './dist/site/fonts/',
 
     srcFolder: './src',
     htmlIncludes: './src/includes/*.html',
-    scss: './src/scss/',
-    css: './src/css/',
-    js: './src/js/',
-    imagesInput: './src/images/**/*.*',
-    imagesOutput: './src/images/',
+    scss: './src/site/scss/',
+    css: './src/site/css/',
+    js: './src/site/js/',
+    imagesInput: './src/site/images/**/*.*',
+    imagesOutput: './src/site/images/',
 
-    svgFontInput: './src/sourceicons/*.svg',
-    svgFontOutput: './src/fonts/',
-    svgFontTemplate: './src/sourceicons/template/_icons.css',
+    svgFontInput: './src/site/sourceicons/*.svg',
+    svgFontOutput: './src/site/fonts/',
+    svgFontTemplate: './src/site/sourceicons/template/_icons.css',
     svgFontScssOutput: '../scss/base/_icons.scss',
-    svgFontLessOutput: '../less/base/_icons.less',
     svgFontCssPath: '../fonts/',
 
     watch: {
         srcHtml: './src/*.html',
         distHtml: './dist/*.html',
-        fonts: './src/fonts/*.*',
+        fonts: './src/site/fonts/*.*',
         html: './src/**/*.html',
         htmlIncludes: './src/includes/**/*.html',
-        js: './src/js/**/*.js',
-        jsAll: './src/js/**/*.*',
-        jsDist: './dist/js/**/*.js',
-        jsDistAll: './dist/js/**/*.*',
-        scssToCss: './src/scss/**/*.scss',
-        css: './src/css/**/*.css',
-        img: './src/sourceimages/**/*.*',
-        svgFonts: './src/sourceicons/**/*.*'
+        js: './src/site/js/**/*.js',
+        jsAll: './src/site/js/**/*.*',
+        jsDist: './dist/site/js/**/*.js',
+        jsDistAll: './dist/site/js/**/*.*',
+        scssToCss: './src/site/scss/**/*.scss',
+        css: './src/site/css/**/*.css',
+        img: './src/site/sourceimages/**/*.*',
+        svgFonts: './src/site/sourceicons/**/*.*'
     }
 };
 
@@ -277,14 +275,14 @@ gulp.task('copy:fonts', function () {
     return gulp
         .src(path.watch.fonts)
         .pipe(gulpCopy(path.svgFontDist, {
-            prefix: 2
+            prefix: 3
         }));
 });
 gulp.task('copy:js', function () {
     return gulp
         .src(path.watch.js)
         .pipe(gulpCopy(path.jsDist, {
-            prefix: 2
+            prefix: 3
         }));
 });
 
