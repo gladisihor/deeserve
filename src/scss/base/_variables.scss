@@ -5,17 +5,21 @@
 $black: #000;
 $white: #fff;
 $gray: #666;
-$blue: #181e2d;
+$blue: #86939e;
+$blue-dark: #5e6977;
 $blue-light: #e1e8ee;
 $red: #db2023;
 $yellow: #f9b42d;
 $green: #8ed72b;
 $orange: #f58220;
+$dark: #181e2d;
 
-$primary: $blue;
+$primary: $dark;
 $warning: $orange;
-$info-text-color: $blue;
+$info-text-color: $primary;
 $base-input-color: $blue-light;
+$title-alt-color: $blue;
+$notes-color: $blue-dark;
 
 $font-family-base: 'Avenir Next', 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
 $base-font-serif: 'Times New Roman', 'Times', 'Baskerville', 'Georgia', serif;
