@@ -124,11 +124,17 @@ h2{
 	@extend %clearfix;
 	max-width:1440px;
 	margin:0 auto;
+	@include media(">=widescreen-large") {
+		max-width:1440px;
+	}
 	&.container-medium{
 		max-width:770px;
 	}
 	&.container-small{
 		max-width:710px;
+	}
+	&.container-extrasmall{
+		max-width:550px;
 	}
 	&.no-paddings{
 		padding:0;

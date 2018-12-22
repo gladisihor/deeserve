@@ -8447,10 +8447,15 @@ h2 {
 .container {
   max-width: 1440px;
   margin: 0 auto; }
+  @media (min-width: 1440px) {
+    .container {
+      max-width: 1440px; } }
   .container.container-medium {
     max-width: 770px; }
   .container.container-small {
     max-width: 710px; }
+  .container.container-extrasmall {
+    max-width: 550px; }
   .container.no-paddings {
     padding: 0; }
 
