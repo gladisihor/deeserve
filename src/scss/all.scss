@@ -120,7 +120,7 @@ h2{
 		line-height:26px;
 	}
 }
-#wrapper .container{
+.container{
 	@extend %clearfix;
 	max-width:1440px;
 	margin:0 auto;
@@ -467,6 +467,7 @@ h2{
 	line-height:34px;
 	color:#fff;
 	text-align:center;
+	letter-spacing:-0.009em;
 	@include media("<widescreen") {
 		min-height:calc(100vh - 60px);
 	}
@@ -546,6 +547,7 @@ h2{
 }
 .article-block{
 	position:relative;
+	color:#5e6977;
 	@include media("<desktop") {
 		font-size:17px;
 		line-height:28px;
@@ -746,6 +748,10 @@ h2{
 .clients-section{
 	padding:160px 0 60px;
 	text-align:center;
+	@include media("<tablet") {
+		padding:50px 0;
+		background:#f5f8fa;
+	}
 	.container{
 		max-width:1204px;
 		padding:0 15px;
@@ -756,21 +762,51 @@ h2{
 		line-height:25px;
 		font-weight:500;
 		color:$warning;
-	}
-	.swiper-container {
-		width:100%;
-		height:100%;
+		@include media("<tablet") {
+			margin:0 0 40px;
+		}
 	}
 	.thumbnails-pagination{
 		display:flex;
 		justify-content:space-between;
 		align-items:center;
+		padding:0 0 69px;
 		.thumbnail{
+			max-width:20%;
+			padding:0 15px;
 			cursor:pointer;
 			opacity:0.3;
 			transition:opacity 0.3s ease;
 			&.active{
 				opacity:1;
+			}
+		}
+	}
+	.swiper-container {
+		width:100%;
+		height:100%;
+		@include media("<tablet") {
+			overflow:visible;
+		}
+		.thumbnail{
+			padding:0 0 20px;
+			text-align:center;
+		}
+		.swiper-button-prev,
+		.swiper-button-next{
+			top:25px;
+			margin:0;
+			font-size:31px;
+			line-height:1;
+			color:#e7eaec;
+			background:none;
+			transition:all 0.2s ease;
+			@include media("<tablet") {
+				top:50%;
+				margin:-18px -16px 0;
+			}
+			&:hover{
+				color:lighten($primary, 40%);
 			}
 		}
 	}
@@ -782,10 +818,65 @@ h2{
 	.swiper-slide {
 		display:inline-block;
 		vertical-align:top;
+		max-width:100%;
+		padding:0 80px;
 		font-size:32px;
 		line-height:46px;
 		text-align:center;
 		white-space:normal;
+		@include media("<desktop") {
+			font-size:25px;
+			line-height:33px;
+		}
+		@include media("<tablet") {
+			padding:0 30px;
+			font-size:18px;
+			line-height:24px;
+		}
+	}
+	blockquote{
+		margin:0;
+		q{
+			display:block;
+			padding:0 0 40px;
+			@include media("<desktop") {
+				padding:0 0 20px;
+			}
+		}
+		cite{
+			display:block;
+			font-style:normal;
+			font-weight:500;
+			font-size:16px;
+			line-height:22px;
+			@include media("<desktop") {
+				font-size:14px;
+				line-height:18px;
+			}
+			@include media("<tablet") {
+				font-size:13px;
+				line-height:16px;
+			}
+		}
+		.name{
+			display:block;
+			padding:0 0 4px;
+			font-size:18px;
+			line-height:24px;
+			color:#43484d;
+			@include media("<desktop") {
+				font-size:15px;
+				line-height:22px;
+			}
+			@include media("<tablet") {
+				font-size:14px;
+				line-height:18px;
+			}
+		}
+		.post{
+			display:block;
+			color:#86939e;
+		}
 	}
 }
 .live-straming-section{

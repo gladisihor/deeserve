@@ -8343,7 +8343,7 @@ button.swiper-pagination-bullet {
   padding: 0;
   list-style: none; }
 
-.clearfix:after, #wrapper .container:after, .navigation:after {
+.clearfix:after, .container:after, .navigation:after {
   content: '';
   display: block;
   clear: both; }
@@ -8444,14 +8444,14 @@ h2 {
       font-size: 15px;
       line-height: 26px; } }
 
-#wrapper .container {
+.container {
   max-width: 1440px;
   margin: 0 auto; }
-  #wrapper .container.container-medium {
+  .container.container-medium {
     max-width: 770px; }
-  #wrapper .container.container-small {
+  .container.container-small {
     max-width: 710px; }
-  #wrapper .container.no-paddings {
+  .container.no-paddings {
     padding: 0; }
 
 #wrapper {
@@ -8772,7 +8772,8 @@ h2 {
   font-size: 22px;
   line-height: 34px;
   color: #fff;
-  text-align: center; }
+  text-align: center;
+  letter-spacing: -0.009em; }
   @media (max-width: 1199px) {
     .welcome-banner {
       min-height: calc(100vh - 60px); } }
@@ -8844,7 +8845,8 @@ h2 {
         bottom: 0; } }
 
 .article-block {
-  position: relative; }
+  position: relative;
+  color: #5e6977; }
   @media (max-width: 991px) {
     .article-block {
       font-size: 17px;
@@ -9031,6 +9033,10 @@ h2 {
 .clients-section {
   padding: 160px 0 60px;
   text-align: center; }
+  @media (max-width: 767px) {
+    .clients-section {
+      padding: 50px 0;
+      background: #f5f8fa; } }
   .clients-section .container {
     max-width: 1204px;
     padding: 0 15px; }
@@ -9040,22 +9046,51 @@ h2 {
     line-height: 25px;
     font-weight: 500;
     color: #f58220; }
-  .clients-section .swiper-container {
-    width: 100%;
-    height: 100%; }
+    @media (max-width: 767px) {
+      .clients-section h3 {
+        margin: 0 0 40px; } }
   .clients-section .thumbnails-pagination {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: justify;
     justify-content: space-between;
     -ms-flex-align: center;
-    align-items: center; }
+    align-items: center;
+    padding: 0 0 69px; }
     .clients-section .thumbnails-pagination .thumbnail {
+      max-width: 20%;
+      padding: 0 15px;
       cursor: pointer;
       opacity: 0.3;
       transition: opacity 0.3s ease; }
       .clients-section .thumbnails-pagination .thumbnail.active {
         opacity: 1; }
+  .clients-section .swiper-container {
+    width: 100%;
+    height: 100%; }
+    @media (max-width: 767px) {
+      .clients-section .swiper-container {
+        overflow: visible; } }
+    .clients-section .swiper-container .thumbnail {
+      padding: 0 0 20px;
+      text-align: center; }
+    .clients-section .swiper-container .swiper-button-prev,
+    .clients-section .swiper-container .swiper-button-next {
+      top: 25px;
+      margin: 0;
+      font-size: 31px;
+      line-height: 1;
+      color: #e7eaec;
+      background: none;
+      transition: all 0.2s ease; }
+      @media (max-width: 767px) {
+        .clients-section .swiper-container .swiper-button-prev,
+        .clients-section .swiper-container .swiper-button-next {
+          top: 50%;
+          margin: -18px -16px 0; } }
+      .clients-section .swiper-container .swiper-button-prev:hover,
+      .clients-section .swiper-container .swiper-button-next:hover {
+        color: #6479ad; }
   .clients-section .swiper-wrapper {
     font-size: 0;
     line-height: 0;
@@ -9063,10 +9098,60 @@ h2 {
   .clients-section .swiper-slide {
     display: inline-block;
     vertical-align: top;
+    max-width: 100%;
+    padding: 0 80px;
     font-size: 32px;
     line-height: 46px;
     text-align: center;
     white-space: normal; }
+    @media (max-width: 991px) {
+      .clients-section .swiper-slide {
+        font-size: 25px;
+        line-height: 33px; } }
+    @media (max-width: 767px) {
+      .clients-section .swiper-slide {
+        padding: 0 30px;
+        font-size: 18px;
+        line-height: 24px; } }
+  .clients-section blockquote {
+    margin: 0; }
+    .clients-section blockquote q {
+      display: block;
+      padding: 0 0 40px; }
+      @media (max-width: 991px) {
+        .clients-section blockquote q {
+          padding: 0 0 20px; } }
+    .clients-section blockquote cite {
+      display: block;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px; }
+      @media (max-width: 991px) {
+        .clients-section blockquote cite {
+          font-size: 14px;
+          line-height: 18px; } }
+      @media (max-width: 767px) {
+        .clients-section blockquote cite {
+          font-size: 13px;
+          line-height: 16px; } }
+    .clients-section blockquote .name {
+      display: block;
+      padding: 0 0 4px;
+      font-size: 18px;
+      line-height: 24px;
+      color: #43484d; }
+      @media (max-width: 991px) {
+        .clients-section blockquote .name {
+          font-size: 15px;
+          line-height: 22px; } }
+      @media (max-width: 767px) {
+        .clients-section blockquote .name {
+          font-size: 14px;
+          line-height: 18px; } }
+    .clients-section blockquote .post {
+      display: block;
+      color: #86939e; }
 
 .live-straming-section {
   display: -ms-flexbox;
