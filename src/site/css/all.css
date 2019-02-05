@@ -9592,6 +9592,8 @@ h2 {
   @media (min-width: 1200px) {
     .container {
       max-width: 1440px; } }
+  .container.container-standard {
+    max-width: 1440px; }
   .container.container-medium {
     max-width: 770px; }
   .container.container-small {
@@ -10723,5 +10725,57 @@ textarea.form-control {
 .resize-active .nav-holder,
 .resize-active .nav-holder .nav-slider {
   transition: none !important; }
+
+.title-block {
+  letter-spacing: -0.009em;
+  padding: 80px 0;
+  text-align: center; }
+  @media (max-width: 991px) {
+    .title-block {
+      padding: 40px 0; } }
+  @media (max-width: 767px) {
+    .title-block {
+      padding: 20px 0; } }
+  .title-block h1 {
+    margin: 0; }
+
+.content {
+  padding: 80px 0; }
+  @media (max-width: 991px) {
+    .content {
+      padding: 40px 0; } }
+  @media (max-width: 767px) {
+    .content {
+      padding: 20px 0; } }
+  .content h1 {
+    margin: 0; }
+  .content blockquote {
+    color: #b12428; }
+    .content blockquote q {
+      display: block;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: bold;
+      text-transform: uppercase; }
+      @media (max-width: 767px) {
+        .content blockquote q {
+          font-size: 26px; } }
+      .content blockquote q:before, .content blockquote q:after {
+        display: block;
+        position: relative;
+        top: 0.1em;
+        left: -0.15em;
+        font-size: 45px;
+        font-style: italic; }
+        @media (max-width: 767px) {
+          .content blockquote q:before, .content blockquote q:after {
+            font-size: 38px; } }
+    .content blockquote cite {
+      display: block;
+      font-size: 28px;
+      line-height: 1; }
+      @media (max-width: 767px) {
+        .content blockquote cite {
+          font-size: 22px; } }
 
 /*# sourceMappingURL=all.css.map */
